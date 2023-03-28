@@ -1,0 +1,4 @@
+INSERT INTO gestionnaire (id_gestionnaire, nom_complet, id_employe,id_hotel)
+SELECT id_employe, nom_complet, id_employe,id_hotel
+FROM employe
+WHERE role = 'gestionnaire';
