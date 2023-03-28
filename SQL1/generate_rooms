@@ -1,0 +1,35 @@
+CREATE OR REPLACE FUNCTION generate_rooms()
+RETURNS VOID AS $$
+DECLARE
+    room_number INTEGER;
+    price NUMERIC;
+    amenities TEXT;
+    room_type TEXT;
+    capacity INTEGER;
+    view TEXT;
+    extension TEXT;
+    problem TEXT;
+    hotel_id INTEGER;
+    counter INTEGER := 0;
+    types TEXT[] := ARRAY['double', 'triple', 'quadruple'];
+BEGIN
+    FOR hotel_id IN 1..40 LOOP
+        FOR i IN 1..5 LOOP
+            room_number := counter * 5 + i;
+            price := 100 * (i + 1);
+            amenities := 'Wi-Fi, Air Conditioning, Mini Bar';
+            room_type := types[((room_number - 1) % 3) + 1];
+            capacity := (room_number - 1) % 3 + 2;
+            view := 'City';
+            extension := 'Balcony';
+            problem := NULL;
+
+            INSERT INTO rooms (numero_chambre, prix, commodite, type_chambre, capacite, vue, extension, probleme, id_hotel)
+            VALUES (room_number, price, amenities, room_type, capacity, view, extension, problem, hotel_id);
+        END LOOP;
+        counter := counter + 1;
+    END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT generate_rooms();
