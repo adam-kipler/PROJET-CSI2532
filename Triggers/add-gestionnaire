@@ -1,0 +1,16 @@
+CREATE OR REPLACE FUNCTION create_gestionnaire_on_employe_insert()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.role = 'Gestionnaire' THEN
+    INSERT INTO gestionnaire (nom_complet, id_employe, id_hotel)
+    VALUES (NEW.nom_complet, NEW.id_employe, NEW.id_hotel);
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trg_create_gestionnaire_on_employe_insert
+  AFTER INSERT ON employe
+  FOR EACH ROW
+  EXECUTE FUNCTION create_gestionnaire_on_employe_insert();
