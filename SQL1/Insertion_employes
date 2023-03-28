@@ -1,0 +1,27 @@
+CREATE OR REPLACE FUNCTION generate_employees()
+RETURNS VOID AS $$
+DECLARE
+    full_name TEXT;
+    address TEXT;
+    ssn TEXT;
+    role TEXT;
+    hotel_id INTEGER;
+    counter INTEGER := 0;
+    roles TEXT[] := ARRAY['Gestionnaire', 'Receptionist', 'Housekeeper', 'Maintenance', 'Chef'];
+BEGIN
+    FOR hotel_id IN 1..40 LOOP
+        FOR i IN 1..5 LOOP
+            full_name := 'Employee ' || (counter * 5 + i)::TEXT;
+            address := '123 Main St, City ' || (counter + 1)::TEXT;
+            ssn := '123-45-' || lpad((counter * 5 + i)::TEXT, 4, '0');
+            role := roles[i];
+            
+            INSERT INTO employe (nom_complet, adresse, NAS, role, id_hotel)
+            VALUES (full_name, address, ssn, role, hotel_id);
+        END LOOP;
+        counter := counter + 1;
+    END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT generate_employees();
