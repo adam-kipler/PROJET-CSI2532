@@ -1,1 +1,4 @@
 CREATE INDEX idx_chambre_type ON chambre(type_chambre);
+
+/*on à crée un index pour la table chambre, chambre(type_chambre) cet index va optimiser les requetes de recherche de chambre pas leur type 'double, 
+triple et quadruple', et donc récuperer tout les chambres en fontion de leur type à l'aide de l'index sur l'attribut type_chambre.*/
