@@ -1,3 +1,6 @@
 CREATE INDEX idx_hotel_ville ON hotel(ville);
 
-
+/*On à crée un index pour la table Hotel, hotel(ville) cet index va 
+nous facilité les requetes ou les hotels sont recherchés en fonction de leur localisation (ville) qui sont situé. 
+donc les requetes pour récupérer tout les hotels dans une ville spécifique ou pour trouver des informations relative a 
+cet hotel seront selectionné à l'aide de l'index sur l'attribut ville. */
