@@ -1,1 +1,5 @@
 CREATE INDEX idx_employe_role ON employe(role);
+
+/*On à crée un index pour la table employe, employe(role), cet index va permettre de performer
+la recherche d'employe en fonction de leur role càd, l'index va selectionner tout les employé en fonction de leur 
+role qui sera spécifier en fesant appel à l'index sur l'attribut role. */
