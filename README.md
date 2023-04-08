@@ -1,5 +1,5 @@
 # PROJET-CSI2532
-Code SQL de notre projet
+Code SQL de notre projet.
 
 # Groupe 34:
 
